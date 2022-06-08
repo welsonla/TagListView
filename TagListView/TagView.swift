@@ -182,6 +182,9 @@ open class TagView: UIButton {
         }
     }
     
+    open var minWidth = 0.0
+    open var minHeight = 0.0
+    
     /// Handles Tap (TouchUpInside)
     open var onTap: ((TagView) -> Void)?
     open var onLongPress: ((TagView) -> Void)?
@@ -236,6 +239,12 @@ open class TagView: UIButton {
         }
         if enableRemoveButton {
             size.width += removeButtonIconSize + paddingX
+        }
+        if minWidth > 0 {
+            size.width = max(self.minWidth, size.width)
+        }
+        if minHeight > 0 {
+            size.height = max(self.minHeight, size.height)
         }
         return size
     }
